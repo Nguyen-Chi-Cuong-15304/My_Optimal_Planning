@@ -64,5 +64,6 @@ class Linear:
             return best_solution
         else:
             print("The problem does not have an optimal solution.")
+            print('-' * 50)
             return None
 

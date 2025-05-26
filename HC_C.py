@@ -19,7 +19,7 @@ class HC_C:
                 if j> 1 and X[i][j - 1] == 4:
                     X[i][j] = 0
                 else: 
-                    X[i][j] = np.random.randint(0, 4)
+                    X[i][j] = np.random.randint(0, 5)
         for d in range(1, D+1):
             for shift in range(1, 5):
                 count = np.sum(X[:, d] == shift)

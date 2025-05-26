@@ -1,4 +1,4 @@
-from Linear_C import Linear
+from Linear import Linear
 from Heuristic_C import Heuristic_C
 from GA_C import GA_C
 from ACO_C import AntColony
@@ -21,12 +21,13 @@ def read_input_from_file(filename):
     return N, D, A, B, dayoff
 
 if __name__ == "__main__":
-    list_file = [1, 2, 10, 4]
+    list_file = [1, 10, 4]
     file = 'Testcase/tc'
     for i in list_file:
         filename = file + str(i) + '.txt'
         N, D, A, B, dayoff = read_input_from_file(filename)
-        solver = SimulatedAnnealingScheduler()
+        solver = HC_C()
+
         X = solver.solve(N, D, A, B, dayoff)
         print(f"File {i}:")
 

@@ -5,7 +5,7 @@ class GA_C:
     def __init__(self):
         pass
 
-    def initialize_random_solution(N, D, dayoff, A, B):
+    def initialize_random_solution(self, N, D, dayoff, A, B):
         X = np.zeros((N+1, D+1))
         for i in range(1, N+1):
             for j in range(1, D+1):
@@ -18,7 +18,7 @@ class GA_C:
                 if j> 1 and X[i][j - 1] == 4:
                     X[i][j] = 0
                 else: 
-                    X[i][j] = np.random.randint(0, 4)
+                    X[i][j] = np.random.randint(0, 5)
         for d in range(1, D+1):
             for shift in range(1, 5):
                 count = np.sum(X[:, d] == shift)
@@ -38,7 +38,7 @@ class GA_C:
                     count -= 1
         return X
     
-    def evaluate_fitness(X, N, D, A, B, dayoff):
+    def evaluate_fitness(self, X, N, D, A, B, dayoff):
         penalty = 0
         # check vi pham ngay nghi
         for i in range(1, N + 1):
@@ -68,12 +68,12 @@ class GA_C:
                 max_night_shift = count
         return -max_night_shift + penalty
     
-    def tournament_selection(population, fitness_scores, tournament_size=3):
+    def tournament_selection(self, population, fitness_scores, tournament_size=3):
         selected_indices = np.random.choice(len(population), tournament_size, replace=False)
         best_index = selected_indices[np.argmax(fitness_scores[selected_indices])]
         return population[best_index]
     
-    def crossover(parent1, parent2, crossover_rate=0.6):
+    def crossover(self, parent1, parent2, crossover_rate=0.6):
         child1 = np.copy(parent1)
         child2 = np.copy(parent2)
         for i in range(1, len(parent1)):
@@ -82,7 +82,7 @@ class GA_C:
                 child2[i] = parent1[i]
         return child1, child2
     
-    def mutate(X, N, D, dayoff, A, B, mutation_rate=0.1):
+    def mutate(self, X, N, D, dayoff, A, B, mutation_rate=0.1):
         X = np.copy(X)  # Tạo bản sao
         # Bước đột biến
         for i in range(1, N + 1):
